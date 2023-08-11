@@ -1,0 +1,108 @@
+/*!
+ *
+ * -- Chordd
+ * -- chordd.css
+ *
+ * -- App: https://kearlsaint.github.io/Chordd
+ * -- Source: https://github.com/kearlsaint/Chordd
+ *
+**/
+
+
+body, [main] {
+	background: white !important;
+}
+[material] [drawer] > * {
+	border-bottom: thin solid #1d3d20;
+}
+[material] [topbar] {
+	width: 100%;
+}
+[material] [topbar] input {
+	width: 224px;
+	max-width: 224px;
+	min-width: 224px;
+	height: 48px;
+}
+[material] [topbar] button {
+	width: 48px;
+}
+[material] [topbar] [titlecontainer] {
+	height: 56px;
+	font-size: 24px;
+	line-height: 56px;
+	cursor: pointer;
+	text-transform: capitalize;
+}
+[material] [topbar] [iconcontainer] {
+  min-width: 56px;
+  height: 56px;
+  border: none;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+[material] [list] [item] {
+	line-height: 1.5em;
+	position: relative;
+}
+[material] [list] [item] > div {
+	line-height: 14px;
+}
+[material] [list] [item] artist {
+	display: block;
+	font-size: 12px;
+	font-weight: 500;
+}
+[material] [list] [item] info {
+	display: block;
+	font-size: 11px;
+	font-weight: 500;
+}
+[material] [list] [item] info [icon] {
+	zoom: 50%;
+}
+[material] [list] [item] [itemaction] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 8px;
+	opacity: .5;
+	border-bottom-left-radius: 3px;
+}
+[material] [list] [item] [itemaction]:hover {
+	opacity: 1;
+	background-color: black;
+}
+
+
+[material] [fab] {
+	box-shadow: none;
+}
+[material] [fab], [material] [fab-options] {
+	position: fixed;
+	right: 16px;
+	bottom: 16px;
+}
+[material] [fab-options] {
+	z-index: 1;
+	width: 56px;
+	border-radius: 28px;
+	overflow: hidden;
+}
+[material] [fab-options] [option] {
+	width: 56px;
+	height: 56px;
+	line-height: 56px;
+	text-align: center;
+	overflow: hidden;
+	border-radius: 28px;
+}
+[material] [tablature] {
+	color: #000!important;
+}
+[material] [tablature] > span {
+	color: #000!important;
+	background: #ccc;
+	padding: 2px 2px;
+}

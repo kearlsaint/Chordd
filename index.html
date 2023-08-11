@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--html lang="en" manifest="files.manifest"-->
+<head>
+<title>Chordd</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="kearlsaint@gmail.com">
+<meta name="description" content="Chordd is a guitar tab and chord fetcher designed to be smart and beautiful.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Chordd">
+<meta name="format-detection" content="telephone=no">
+<link rel="shortcut icon" href="assets/icons/icon.png" />
+<link rel="apple-touch-icon" href="assets/icons/icon.png" />
+<!--iPhone--><link rel="apple-touch-icon" sizes="57x57" href="assets/icons/icon-57.png" />
+<!--iPad--><link rel="apple-touch-icon" sizes="72x72" href="assets/icons/icon-72.png" />
+<!--iPhone(retina)--><link rel="apple-touch-icon" sizes="114x114" href="assets/icons/icon-114.png" />
+<!--iPad(retina)--><link rel="apple-touch-icon" sizes="144x144" href="assets/icons/icon-144.png" />
+<!-- iOS 6 & 7 iPad (retina, portrait) -->
+<link href="ios/splash/apple-touch-startup-image-1536x2008.jpg"
+			media="(device-width: 768px) and (device-height: 1024px)
+				 and (orientation: portrait)
+				 and (-webkit-device-pixel-ratio: 2)"
+			rel="apple-touch-startup-image">
+<!-- iOS 6 & 7 iPad (retina, landscape) -->
+<link href="ios/splash/apple-touch-startup-image-1496x2048.jpg"
+			media="(device-width: 768px) and (device-height: 1024px)
+				 and (orientation: landscape)
+				 and (-webkit-device-pixel-ratio: 2)"
+			rel="apple-touch-startup-image">
+<!-- iOS 6 iPad (portrait) -->
+<link href="ios/splash/apple-touch-startup-image-768x1004.jpg"
+			media="(device-width: 768px) and (device-height: 1024px)
+				 and (orientation: portrait)
+				 and (-webkit-device-pixel-ratio: 1)"
+			rel="apple-touch-startup-image">
+<!-- iOS 6 iPad (landscape) -->
+<link href="ios/splash/apple-touch-startup-image-748x1024.jpg"
+			media="(device-width: 768px) and (device-height: 1024px)
+				 and (orientation: landscape)
+				 and (-webkit-device-pixel-ratio: 1)"
+			rel="apple-touch-startup-image">
+<!-- iOS 6 & 7 iPhone 5 -->
+<link href="ios/splash/apple-touch-startup-image-640x1096.jpg"
+			media="(device-width: 320px) and (device-height: 568px)
+				 and (-webkit-device-pixel-ratio: 2)"
+			rel="apple-touch-startup-image">
+<!-- iOS 6 & 7 iPhone (retina) -->
+<link href="ios/splash/apple-touch-startup-image-640x920.jpg"
+			media="(device-width: 320px) and (device-height: 480px)
+				 and (-webkit-device-pixel-ratio: 2)"
+			rel="apple-touch-startup-image">
+<!-- iOS 6 iPhone -->
+<link href="ios/splash/apple-touch-startup-image-320x460.jpg"
+			media="(device-width: 320px) and (device-height: 480px)
+				 and (-webkit-device-pixel-ratio: 1)"
+			rel="apple-touch-startup-image">
+<link rel="stylesheet" href="material/css/md-css.min.css">
+<link rel="stylesheet" href="material/css/md-icons.min.css">
+<link rel="stylesheet" href="material/css/chordd.css">
+<script type="text/javascript">
+//window.cserver = 'https://serve-unrealk.herokuapp.com/Chordd';
+window.cserver = 'http://localhost/serve-unrealk/Chordd';
+if(typeof(applicationCache) === "object") {
+	/*applicationCache.addEventListener('cached', function(a, b, c) {
+		console.log(a); console.log(b); console.log(c);
+	});*/
+}
+</script>
+</head>
+<body material fluid>
+  <div panel fullheight id="panel1">
+    <div drawer bg-grey200 nopadding>
+			<div topbar bg-grey100>
+				<div searchcontainer>
+					<input searchinput fg-black padded type="text" placeholder="Search for Artist/Song Title" style="margin: 0 0 0 8px">
+					<button searchbutton bg-grey100 noripple>
+						<span icon="search"></span>
+					</button>
+				</div>
+				<div titlecontainer hidden onclick='app.refresh("back")'>
+					<span iconcontainer>
+						<span icon="arrow-back" style="margin-top:-3px"></span>
+					</span>
+					<span sorttitle>
+						Artists View
+					</span>
+				</div>
+			</div>
+			<div drawer1 list>
+				<div smaller bold padded fg-white bg-grey700>
+					SAVED DATA
+				</div>
+				<div item padded onclick='app.refresh("artists")'>
+					<span icon="list"></span>
+					Sort by Artist
+				</div>
+				<div item padded onclick='app.refresh("titles")'>
+					<span icon="list"></span>
+					Sort by Song Title
+				</div>
+				<div item padded onclick='app.refresh("tabs")'>
+					<span icon="list"></span>
+					View Tabs
+				</div>
+				<div item padded onclick='app.refresh("chords")'>
+					<span icon="list"></span>
+					View Chords
+				</div>
+				<div item padded onclick='app.randomize()'>
+					<span icon="shuffle"></span>
+					Random Pick
+				</div>
+				<div smaller bold padded fg-white bg-grey700>
+					NAVIGATION
+				</div>
+				<!--div item padded>
+					<span icon="settings"></span>
+					Settings
+				</div-->
+				<div item padded page-target="home">
+					<span icon="home"></span>
+					Home
+				</div>
+				<div item padded page-target="storage">
+					<span icon="storage"></span>
+					Storage
+				</div>
+				<div item padded page-target="about">
+					<span icon="info-outline"></span>
+					About
+				</div>
+			</div>
+			<div drawer2 hidden>
+				<div sidedata>
+					<div smaller bold padded fg-white bg-grey700 title-local></div>
+					<div list list-local style="margin-bottom: 8px"></div>
+					<div smaller bold padded fg-white bg-grey700 title-online></div>
+					<div list list-online></div>
+				</div>
+			</div>
+    </div>
+    <div main>
+      <div toolbar seamed bg-blue>
+        <span left panel-target="panel1" /*ripple ripple-color="blue200"*/>
+          <span icon="menu"></span>
+        </span>
+        <header title>Chordd</header>
+				<span right ripple ripple-color="blue200" onclick="app.transpose.up()">
+					<span icon="expand-less"></span>
+				</span>
+				<span right ripple ripple-color="blue200" onclick="app.transpose.down()">
+					<span icon="expand-more"></span>
+				</span>
+				<span right ripple ripple-color="blue200" onclick="app.transpose.fontSize()">
+					<span icon="format-size"></span>
+				</span>
+      </div>
+      <div content>
+				<div fab bg-indigo noripple onclick="app.autoScroll(-1)">
+					<div icon="av-timer"></div>
+				</div>
+				<div fab-options bg-indigo style="display: none; height: 56px; opacity: 0">
+					<div onclick="app.autoScroll(1)" option ripple ripple-color="blueA400">
+						<div icon="looks-one"></div>
+					</div>
+					<div onclick="app.autoScroll(2)" option ripple ripple-color="blueA400">
+						<div icon="looks-two"></div>
+					</div>
+					<div onclick="app.autoScroll(3)" option ripple ripple-color="blueA400">
+						<div icon="looks-3"></div>
+					</div>
+					<div onclick="app.autoScroll(5)" option ripple ripple-color="blueA400">
+						<div icon="looks-4"></div>
+					</div>
+					<div onclick="app.autoScroll(7)" option ripple ripple-color="blueA400">
+						<div icon="looks-5"></div>
+					</div>
+					<div onclick="app.autoScroll(9)" option ripple ripple-color="blueA400">
+						<div icon="looks-6"></div>
+					</div>
+					<div onclick="app.autoScroll(0)" option ripple ripple-color="blueA400">
+						<div icon="pause"></div>
+					</div>
+				</div>
+				<div pages>
+					<div page page-id="content">
+						<br>
+						<h1 fg-indigo tab-title></h1>
+						<h5 fg-indigoA400 tab-artist></h5>
+						<h4 fg-indigoA400 tab-details></h4>
+						<hr inverted>
+						<pre tablature monospace fg-blueA400></pre>
+					</div>
+					<div page page-id="settings">
+						<br>
+						<h1 fg-indigo>Settings</h1>
+						<hr>
+						<div card fluid lead>
+							<!--
+							<input id="settings-autotranspose" type="checkbox">
+							<label for="settings-autotranspose">&nbsp;Auto Transpose</label>
+							<br>
+							<div card bg-grey100>
+								<label for="settings-autofind">Transpose to this key</label>
+								<select id="settings-autofind">
+									<option value="A">Am</option>
+								</select>
+							</div>
+							<hr>
+							-->
+						</div>
+					</div>
+					<div page page-id="home" page-title="Chordd" default>
+						<h1 fg-indigo>Hello!</h1>
+						<hr>
+						<p lead fg-black>Find chords and tabs from the left side.</p>
+						<ul fg-grey700>
+							<li>(<span icon="favorite"></span>) Save an item to save it for offline use.</li>
+							<li>(<span icon="search"></span>) Search tabs and chords by artist or by song title.</li>
+							<li>(<span icon="star-half"></span>) The most starred item is likely the most accurate amongst the others.</li>
+						</ul>
+					</div>
+					<div page page-id="storage" page-title="Chordd">
+						<br>
+						<h1 fg-indigo>Storage</h1>
+						<hr>
+						<div card bg-blue700 fluid lead>
+							<table>
+								<tr>
+									<td align-right>Is Available?</td>
+									<td><span storageAvailable fg-indigo>-</span></td>
+								</tr>
+								<tr>
+									<td align-right>Backend</td>
+									<td><span storageBackend fg-indigo>-</span></td>
+								</tr>
+								<tr>
+									<td align-right>Indexed</td>
+									<td><span storageIndex fg-indigo>-</span></td>
+								</tr>
+								<tr>
+									<td align-right>Total Usage</td>
+									<td><span storageSize fg-indigo>-</span></td>
+								</tr>
+								<tr>
+									<td align-right>Free Space</td>
+									<td><span storageFree fg-indigo>-</span></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div page page-id="about" page-title="Chordd">
+						<br>
+						<h1 fg-indigo>About this App</h1>
+						<hr>
+						<p fg-indigo>Data is saved in your browser and <u fg-red><em>not in your device</em></u>.</p>
+						<p fg-indigo>Version 3.0; Updated on March 16, 2015</p>
+						<hr>
+						<p fg-grey400>Zepto v1.1.4<br><u>http://zeptojs.com/license</u></p>
+						<p fg-grey400>VelocityJS v1.1.0<br><u>http://en.wikipedia.org/wiki/MIT_License</u></p>
+						<p fg-grey400>jStorage v0.4.12<br><u>http://unlicense.org/</u></p>
+						<p fg-grey400>MaterialCSS v1.0<br><u>http://github.com/kearlsaint/material-css/</u></p>
+						<p fg-grey400>Source code available on<br><u>http://github.com/kearlsaint/Chordd</u></p>
+					</div>
+				</div>
+      </div>
+    </div>
+  </div>
+  <script src="material/js/zepto.min.js"></script>
+  <script src="material/js/velocity.min.js"></script>
+  <script src="material/js/md-js.min.js"></script>
+	<script src="material/js/chordd.js"></script>
+	<script src="material/js/jstorage.js"></script>
+	<script src="material/js/init.js"></script>
+</body>
+</html>
